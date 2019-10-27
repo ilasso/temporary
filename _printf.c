@@ -9,7 +9,7 @@
 
 
 
-int _process(const char *fmt, char format, va_list arguments);
+int _process(char format, va_list arguments);
 void reverse(char *str, int len);
 int intToStr(int x, char str[]);
 /**
@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			cont += _process(format, format[i + 1], arguments);
+			cont += _process(format[i + 1], arguments);
 			i++;
 		}
 	}
@@ -88,13 +88,12 @@ int intToStr(int x, char str[])
 
 /**
  * _process - function that analize format(%) to print
- * @fmt: complet format
  * @format: char indicator for format(char after %)
  * @arguments: list of variadic arguments
  * Return: length string result
  * On error, return 0
  */
-int _process(const char *fmt, char format, va_list arguments)
+int _process(char format, va_list arguments)
 {
 	char c;
 	char sint[11];
@@ -103,8 +102,6 @@ int _process(const char *fmt, char format, va_list arguments)
 	char *s;
 
 	i = 0;
-if (format != '%')
-{
 	switch (format)
 	{
 	case '%':
@@ -128,14 +125,8 @@ if (format != '%')
 		return (x);
 	case 's':
 		s = va_arg(arguments, char *);
-		write(1, s, sizeof(s) + sizeof(fmt) - 1);
-		return (sizeof(s) + sizeof(fmt) - 1);
+		write(1, s, strlen(s));
+		return (strlen(s));
 	}
-}
-else
-{
-		c = '%';
-		write(1, &c, 1);
-}
 		return (1);
 }

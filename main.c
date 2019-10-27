@@ -28,8 +28,8 @@ int main(void)
     len = _printf("Length:[%d, %i]\n", len, len);
     len2 = printf("Length:[%d, %i]\n", len2, len2);
 	printf("len=%d,len2=%d\n",len,len2);
-    len = _printf("varios formatos:[%d, %i,%c,%s,%%,%s]\n", len, len,'W',"Hola Mundo","Holberton");
-    len2 = printf("varios formatos:[%d, %i,%c,%s,%%,%s]\n", len2, len2,'W',"Hola Mundo","Holberton");
+    len = _printf("varios formatos:[%d, %i,%c,%s,%%,%s]\n", len, len,'W',"Hola","Holberton");
+    len2 = printf("varios formatos:[%d, %i,%c,%s,%%,%s]\n", len2, len2,'W',"Hola","Holberton");
 	printf("len=%d,len2=%d\n",len,len2);
 
     /*len = _printf("Let's try to printf a simple sentence.\n");

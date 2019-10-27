@@ -7,11 +7,6 @@
 #include <limits.h>
 
 
-
-
-int _process(char format, va_list arguments);
-void reverse(char *str, int len);
-int intToStr(int x, char str[]);
 /**
  * _printf - function that produces output according to a format
  *	     like printf
@@ -56,6 +51,10 @@ int _printf(const char *format, ...)
 void reverse(char *str, int len)
 {
 	int i = 0, j = len - 1, temp;
+
+	if(str[i] == '-')
+		i++;
+
 		while (i < j)
 		{
 			temp = str[i];
@@ -76,6 +75,12 @@ void reverse(char *str, int len)
 int intToStr(int x, char str[])
 {
 	int i = 0;
+		if ( x < 0)
+		{
+			x = abs(x);
+			str[i] = '-';
+			i++;
+		}
 		while (x)
 		{
 			str[i++] = (x % 10) + '0';
@@ -119,7 +124,7 @@ int _process(char format, va_list arguments)
 		write(1, sint, x);
 		return (x);
 	case 'd':
-		i = va_arg(arguments, int);
+		i = (int) va_arg(arguments, int);
 		x = intToStr(i, sint);
 		write(1, sint, x);
 		return (x);

@@ -94,6 +94,13 @@ int intToStr(int x, char str[])
 {
 	int i = 0;
 
+	if (x == 0)
+	{
+		str[0] = '0';
+		str[1] = '\0';
+		return (1);
+	}
+
 		if (x == INT_MIN)
 		{
 			str[0] = '-';
@@ -159,7 +166,6 @@ int _process(char format, va_list arguments)
 			return (x);
 		case 's':
 			s = va_arg(arguments, char *);
-			printf("voy 2 %s\n",s);
 			write(1, s, strlen(s));
 			return (strlen(s));
 		case 'u':

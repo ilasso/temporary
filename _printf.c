@@ -18,6 +18,7 @@ int _printf(const char *format, ...)
 {
 	int i, cont = 0, len;
 	char newline = '\n';
+	char c;
 	va_list arguments;
 
 	va_start(arguments, format);
@@ -32,8 +33,17 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			cont += _process(format[i + 1], arguments);
-			i++;
+			if (format[i + 1] == '%')
+			{
+				c = '%';
+				write(1, &c, 1);
+				i++;
+			}
+			else
+			{
+				cont += _process(format[i + 1], arguments);
+				i++;
+			}
 		}
 	}
 	write(1, &newline, 1);
@@ -53,7 +63,7 @@ void reverse(char *str, int len)
 	int i = 0, j = len - 1, temp;
 
 
-	if(str[i] == '-')
+	if (str[i] == '-')
 		i++;
 
 		while (i < j)
@@ -77,23 +87,22 @@ int intToStr(int x, char str[])
 {
 	int i = 0;
 
-		if (x == INT_MIN )
-			{
-				str[0] = '-';
-				str[1] = '2';
-				str[2] = '1';
-				str[3] = '4';
-				str[4] = '7';
-				str[5] = '4';
-				str[6] = '8';
-				str[7] = '3';
-				str[8] = '6';
-				str[9] = '4';
-				str[10] = '8';
-				str[11] = '\0';
-			return(11);
-			}
-
+		if (x == INT_MIN)
+		{
+			str[0] = '-';
+			str[1] = '2';
+			str[2] = '1';
+			str[3] = '4';
+			str[4] = '7';
+			str[5] = '4';
+			str[6] = '8';
+			str[7] = '3';
+			str[8] = '6';
+			str[9] = '4';
+			str[10] = '8';
+			str[11] = '\0';
+		return (11);
+		}
 		if (x < 0)
 		{
 			x = abs(x);
@@ -124,33 +133,40 @@ int _process(char format, va_list arguments)
 	int i;
 	int x;
 	char *s;
+	unsigned int u;
 
 	i = 0;
 	switch (format)
 	{
-	case '%':
-		c = '%';
-		write(1, &c, 1);
-		break;
-	case 'c':
-
-		c = va_arg(arguments, int);
-		write(1, &c, 1);
-		break;
-	case 'i':
-		i = va_arg(arguments, int);
-		x = intToStr(i, sint);
-		write(1, sint, x);
-		return (x);
-	case 'd':
-		i = (int) va_arg(arguments, int);
-		x = intToStr(i, sint);
-		write(1, sint, x);
-		return (x);
-	case 's':
-		s = va_arg(arguments, char *);
-		write(1, s, strlen(s));
-		return (strlen(s));
+		case 'c':
+			c = va_arg(arguments, int);
+			write(1, &c, 1);
+			break;
+		case 'i':
+			i = va_arg(arguments, int);
+			x = intToStr(i, sint);
+			write(1, sint, x);
+			return (x);
+		case 'd':
+			i = (int) va_arg(arguments, int);
+			x = intToStr(i, sint);
+			write(1, sint, x);
+			return (x);
+		case 's':
+			s = va_arg(arguments, char *);
+			write(1, s, strlen(s));
+			return (strlen(s));
+		case 'b':
+			i = (int) va_arg(arguments, int);
+			i = binario(i);
+			x = intToStr(i, sint);
+			write(1, sint, x);
+			return (x);
+		case 'u':
+			u = va_arg(arguments, unsigned int);
+			x = UintToStr(u, sint);
+			write(1, sint, x);
+			return (x);
 	}
 		return (1);
-}
+	}

@@ -1,6 +1,7 @@
 #include <limits.h>
 #include <stdio.h>
 #include "holberton.h"
+#include <limits.h>
 
 /**
  * main - Entry point
@@ -11,8 +12,8 @@ int main(void)
 {
     int len;
     int len2;
-    /*unsigned int ui;
-    void *addr;*/
+    unsigned int ui;
+    /*void *addr;*/
     len = _printf("Character:[%c],Char 2:[%c]\n", 'H','W');
     len2 = printf("Character:[%c],Char 2:[%c]\n", 'H','W');
 	printf("len=%d,len2=%d\n",len,len2);
@@ -31,6 +32,20 @@ int main(void)
     len = _printf("varios formatos:[%d, %i,%d,%c,%s,%%,%s]\n", len, len,2147483649,'W',"Hola","Holberton");
     len2 = printf("varios formatos:[%d, %i,%d,%c,%s,%%,%s]\n", len2, len2,2147483649,'W',"Hola","Holberton");
 	printf("len=%d,len2=%d\n",len,len2);
+    len = _printf("varios formatos:[%d, %i,%d,%c,%s,%%,%s]\n", len, len,-2147,'W',"Hola","Holberton");
+    len2 = printf("varios formatos:[%d, %i,%d,%c,%s,%%,%s]\n", len2, len2,-2147,'W',"Hola","Holberton");
+	printf("len=%d,len2=%d\n",len,len2);
+	len = _printf("%b\n", 98);
+	len2 = printf("%b\n", 98);
+	printf("len=%d, len2=%d\n",len,len2);
+    ui = (unsigned int)INT_MAX + 1024;
+    len = _printf("Unsigned:[%u]\n", ui);
+    len2 = printf("Unsigned:[%u]\n", ui);
+	printf("len=%d, len2=%d\n",len,len2);
+    _printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
+    printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
+    _printf("Unsigned octal:[%o]\n", ui);
+    printf("Unsigned octal:[%o]\n", ui);
 
     /*len = _printf("Let's try to printf a simple sentence.\n");
     len2 = printf("Let's try to printf a simple sentence.\n");

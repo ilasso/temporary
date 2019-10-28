@@ -33,12 +33,10 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			if (format[i + 1] == '%')
+			if (format[i+1] == '%')
 			{
 				c = '%';
 				write(1, &c, 1);
-				i++;
-				cont++;
 			}
 			else
 			{
@@ -139,15 +137,21 @@ int _process(char format, va_list arguments)
 	i = 0;
 	switch (format)
 	{
+		case '%':
+			c = '%';
+			write(1, &c, 1);
+			break;
 		case 'c':
 			c = va_arg(arguments, int);
 			write(1, &c, 1);
 			break;
-		case 'b':
-		case 'd':
 		case 'i':
+			i = va_arg(arguments, int);
+			x = intToStr(i, sint);
+			write(1, sint, x);
+			return (x);
+		case 'd':
 			i = (int) va_arg(arguments, int);
-			i = format == 'b' ? binario(i) : i;
 			x = intToStr(i, sint);
 			write(1, sint, x);
 			return (x);
@@ -155,18 +159,17 @@ int _process(char format, va_list arguments)
 			s = va_arg(arguments, char *);
 			write(1, s, strlen(s));
 			return (strlen(s));
+		case 'b':
+			i = (int) va_arg(arguments, int);
+			i = binario(i);
+			x = intToStr(i, sint);
+			write(1, sint, x);
+			return (x);
 		case 'u':
 			u = va_arg(arguments, unsigned int);
 			x = UintToStr(u, sint);
 			write(1, sint, x);
 			return (x);
-		default:
-			c = '%';
-			write(1, &c, 1);
-			write(1, &format, 1);
 	}
 		return (1);
-
-
-
-}
+	}

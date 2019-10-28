@@ -48,6 +48,12 @@ int main(void)
     printf("Unsigned octal:[%o]\n", ui);
     _printf("Unknown:[%r]\n");
     printf("Unknown:[%r]\n");
+    _printf("%\n");
+    printf("%\n");
+/*    _printf("string: [%s]\n",NULL);*/
+    printf("String: [%s]\n",NULL);
+    _printf("Unknown c:[%c]\n");
+    printf("Unknown c:[%c]\n");
 
     /*len = _printf("Let's try to printf a simple sentence.\n");
     len2 = printf("Let's try to printf a simple sentence.\n");

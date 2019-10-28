@@ -10,6 +10,13 @@ unsigned int UintToStr(unsigned int x, char str[])
 {
 	int i = 0;
 
+	if (x == 0)
+	{
+		str[0] = '0';
+		str[1] = '\0';
+		return (1);
+	}
+
 	while (x)
 	{
 		str[i++] = (x % 10) + '0';

@@ -24,6 +24,9 @@ int _printf(const char *format, ...)
 	va_start(arguments, format);
 	len = strlen(format);
 
+	if ( len == 1 && format[0] == '%')
+		return(-1);
+
 	for (i = 0; i < len - 1; i++)
 	{
 		if (format[i] != '%')

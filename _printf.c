@@ -21,11 +21,14 @@ int _printf(const char *format, ...)
 	char c;
 	va_list arguments;
 
+	if (format == NULL)
+		return (-1);
+
 	va_start(arguments, format);
 	len = strlen(format);
 
-	if ( len == 1 && format[0] == '%')
-		return(-1);
+	if (len == 1 && format[0] == '%')
+		return (-1);
 
 	for (i = 0; i < len - 1; i++)
 	{
@@ -156,6 +159,7 @@ int _process(char format, va_list arguments)
 			return (x);
 		case 's':
 			s = va_arg(arguments, char *);
+			printf("voy 2 %s\n",s);
 			write(1, s, strlen(s));
 			return (strlen(s));
 		case 'u':

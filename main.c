@@ -51,6 +51,10 @@ int main(void)
     len = _printf("%");
     len2 = printf("%");
     printf("len=%d, len2=%d\n",len,len2);
+    printf("....................................\n");
+    len = _printf("[%s]\n", NULL);
+    len2 = printf("[%s]\n", NULL);
+    printf("len=%d, len2=%d\n",len,len2);
 /*    _printf("string: [%s]\n",NULL);*/
     /*printf("String: [%s]\n",NULL);
     _printf("Unknown c:[%c]\n");

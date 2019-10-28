@@ -166,7 +166,9 @@ int _process(char format, va_list arguments)
 			return (x);
 		case 's':
 			s = va_arg(arguments, char *);
-			write(1, s, strlen(s));
+			if (s == NULL)
+				s = "(null)";
+ 			write(1, s, strlen(s));
 			return (strlen(s));
 		case 'u':
 			u = va_arg(arguments, unsigned int);

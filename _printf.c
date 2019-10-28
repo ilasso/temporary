@@ -167,6 +167,10 @@ int _process(char format, va_list arguments)
 			x = UintToStr(u, sint);
 			write(1, sint, x);
 			return (x);
+		default:
+				c = '%';
+				write(1, &c, 1);
+				write(1, &format, 1);
 	}
 		return (1);
-	}
+}

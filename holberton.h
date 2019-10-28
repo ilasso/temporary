@@ -1,7 +1,13 @@
 #ifndef HOLBERTON_H
 #define HOLBERTON_H
 #include <stdarg.h>
-
+#include "holberton.h"
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <limits.h>
 int _process(char format, va_list arguments);
 void reverse(char *str, int len);
 int intToStr(int x, char str[]);
